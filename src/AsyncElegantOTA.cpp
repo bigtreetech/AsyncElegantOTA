@@ -117,13 +117,7 @@ void AsyncElegantOtaClass::restart() {
     ESP.restart();
 }
 
+#include "config.h"
 String AsyncElegantOtaClass::getID(){
-    String id = "";
-    #if defined(ESP8266)
-        id = String(ESP.getChipId());
-    #elif defined(ESP32)
-        id = String((uint32_t)ESP.getEfuseMac(), HEX);
-    #endif
-    id.toUpperCase();
-    return id;
+    return FW_VERSION;
 }
